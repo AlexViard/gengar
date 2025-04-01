@@ -16,9 +16,9 @@
 
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
-  home.username = "monzey";
-  home.homeDirectory = "/home/monzey";
-  zoapza
+
+  home.username = "alex";
+  home.homeDirectory = "/home/alex";
 
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
@@ -41,6 +41,7 @@
     waybar       
     kitty
     chromium
+    google-chrome
     firefox
     neovide
     acpi
@@ -62,6 +63,7 @@
     bat
     btop
     discord
+    dolphin
     neofetch
     unzip
     xplr
@@ -104,7 +106,7 @@
     ".config/rofi" = { source = ./configs/rofi; recursive = true; };
     ".config/nvim" = { source = ./configs/nvim; recursive = true; };
     ".config/xplr" = { source = ./configs/xplr; recursive = true; };
-    ".ssh/" = { source = ./configs/ssh; recursive = true; };
+    ## ".ssh/" = { source = ./configs/ssh; recursive = true; };
     ".gitconfig" = { source = ./configs/git/.gitconfig; };
     ".gitignore" = { source = ./configs/git/.gitignore; };
 
@@ -131,7 +133,7 @@
   #
   # or
   #
-  #  /etc/profiles/per-user/monzey/etc/profile.d/hm-session-vars.sh
+  #  /etc/profiles/per-user/alex/etc/profile.d/hm-session-vars.sh
   #
   home.sessionVariables = {
     NIXOS_OZONE_WL = "1";

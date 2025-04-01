@@ -1,5 +1,5 @@
 {
-  description = "Muk flake";
+  description = "Gengar flake";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
@@ -12,7 +12,7 @@
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
     in {
-      nixosConfigurations.muk = nixpkgs.lib.nixosSystem {
+      nixosConfigurations.gengar = nixpkgs.lib.nixosSystem {
         inherit system;
         modules = [ 
           ./configuration.nix 

@@ -22,7 +22,7 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = "muk";
+  networking.hostName = "gengar";
   #networking.wireless.enable = true;
   networking.networkmanager.enable = true;
   networking.extraHosts =
@@ -33,7 +33,7 @@
     127.0.0.1 local.staging.rg.gg
     '';
 
-  console.keyMap = "fr";
+  console.keyMap = "us";
 
   sound.enable = true;
   hardware.pulseaudio.enable = true;
@@ -45,9 +45,9 @@
 
   time.timeZone = "Europe/Paris";
 
-  users.users.monzey = {
+  users.users.alex = {
     isNormalUser = true;
-    description = "monzey";
+    description = "alex";
     extraGroups = [ "wheel" "networkmanager" "docker" ];
     shell = pkgs.zsh;
   };
@@ -61,20 +61,10 @@
   services.udev.packages = [ pkgs.libinput ];  
 
 # @TODO handle this properly
-  services.kanata.enable = true;
-  services.kanata.keyboards.default.config = ''
-    (defsrc
-      rshift
-      caps)
-    
-    (deflayermap (default-layer)
-      rshift esc
-      caps lctl)
-  '';
 
   services.openvpn.servers = {
     dev = { 
-      config = "config /root/openvpn/mbertrand.ovpn"; 
+      config = "config /root/openvpn/aviard.ovpn"; 
       updateResolvConf = true;
     };
   };
@@ -84,7 +74,7 @@
     settings = rec {
       initial_session = {
         command = "${pkgs.hyprland}/bin/hyprland";
-        user = "monzey";
+        user = "alex";
       };
       default_session = initial_session;
     };
@@ -97,6 +87,6 @@
   environment.sessionVariables = {
     NIXOS_OZONE_WL = "1";
     EDITOR = "neovide";
-    XKB_DEFAULT_LAYOUT = "fr";
+    XKB_DEFAULT_LAYOUT = "us";
   };
 }

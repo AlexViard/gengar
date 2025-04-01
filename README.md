@@ -4,7 +4,7 @@
 ## From a fresh install of nixos
 
 ```bash
-  git clone https://github.com/monzey/bonsly.git && cd bonsly
+  git clone https://github.com/alex/bonsly.git && cd bonsly
   chmod a+x setup
   ./setup
 ```

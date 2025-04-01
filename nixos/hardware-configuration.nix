@@ -8,46 +8,30 @@
     [ (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
-  boot.initrd.availableKernelModules = [ "xhci_pci" "thunderbolt" "vmd" "nvme" ];
+  boot.initrd.availableKernelModules = [ "xhci_pci" "thunderbolt" "vmd" "nvme" "usbhid" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/45935308-9662-4d6f-bc83-7e137532187e";
+    { device = "/dev/disk/by-uuid/fa184025-be56-432b-b642-70bc27f7a801";
       fsType = "ext4";
     };
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/E199-20BF";
+    { device = "/dev/disk/by-uuid/C6C1-CD5B";
       fsType = "vfat";
       options = [ "fmask=0077" "dmask=0077" ];
     };
 
-  swapDevices =
-    [ { device = "/dev/disk/by-uuid/8e2ca16c-ca68-4c04-bd3a-48fb4b57e3bd"; }
-    ];
+  swapDevices = [ ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's
   # still possible to use this option, but it's recommended to use it in conjunction
   # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
   networking.useDHCP = lib.mkDefault true;
-  # networking.interfaces.br-1943d4e5d783.useDHCP = lib.mkDefault true;
-  # networking.interfaces.br-44201298b5f1.useDHCP = lib.mkDefault true;
-  # networking.interfaces.br-4a300889c654.useDHCP = lib.mkDefault true;
-  # networking.interfaces.br-bc08deb026ac.useDHCP = lib.mkDefault true;
-  # networking.interfaces.br-ca1d84ae8e24.useDHCP = lib.mkDefault true;
-  # networking.interfaces.docker0.useDHCP = lib.mkDefault true;
-  # networking.interfaces.tun0.useDHCP = lib.mkDefault true;
-  # networking.interfaces.veth2fc2c16.useDHCP = lib.mkDefault true;
-  # networking.interfaces.veth31d79b6.useDHCP = lib.mkDefault true;
-  # networking.interfaces.veth5b15416.useDHCP = lib.mkDefault true;
-  # networking.interfaces.veth65f4ef0.useDHCP = lib.mkDefault true;
-  # networking.interfaces.veth6bbd62e.useDHCP = lib.mkDefault true;
-  # networking.interfaces.veth9af6462.useDHCP = lib.mkDefault true;
-  # networking.interfaces.vethc86fab4.useDHCP = lib.mkDefault true;
-  # networking.interfaces.vethce606eb.useDHCP = lib.mkDefault true;
+  # networking.interfaces.enp45s0u1u3u3.useDHCP = lib.mkDefault true;
   # networking.interfaces.wlp0s20f3.useDHCP = lib.mkDefault true;
   # networking.interfaces.wwan0.useDHCP = lib.mkDefault true;
 

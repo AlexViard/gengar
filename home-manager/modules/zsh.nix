@@ -25,7 +25,7 @@
 
     initExtra = ''
       # Aliases
-      DEFAULT_USER="monzey"
+      DEFAULT_USER="alex"
 
       alias ls='eza'
       alias lt='eza --tree'

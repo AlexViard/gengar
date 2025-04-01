@@ -18,7 +18,7 @@
   '';
 
 users.groups.uinput = {};
-users.users.monzey.extraGroups = ["uinput"];
+users.users.alex.extraGroups = ["uinput"];
   # Activer Kanata via un service systemd
   systemd.user.services.kanata = {
     Unit.Description = "Kanata Wayland Session";
