@@ -4,7 +4,7 @@
 ## From a fresh install of nixos
 
 ```bash
-  git clone https://github.com/alex/bonsly.git && cd bonsly
+  git clone https://github.com/alex/gengar.git && cd gengar
   chmod a+x setup
   ./setup
 ```

@@ -11,7 +11,7 @@ if ! command -v nix &> /dev/null; then
 fi
 
 if [ -f "/etc/NIXOS" ]; then
-  flake_path="$HOME/bonsly/nixos"
+  flake_path="$HOME/gengar/nixos"
   echo "NixOS détecté, installation complète avec configuration système et utilisateur."
   echo "Génération de hardware-configuration.nix..."
   nixos-generate-config --dir "$(pwd)/nixos"

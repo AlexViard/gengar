@@ -42,6 +42,7 @@
     kitty
     chromium
     google-chrome
+    waybar
     firefox
     neovide
     acpi
