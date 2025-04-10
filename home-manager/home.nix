@@ -12,6 +12,14 @@
     ./modules/rofi.nix
   ];
 
+  dconf.enable = true;
+
+  dconf.settings = {
+    "org/gnome/desktop/interface" = {
+      color-scheme = "prefer-dark";
+    };
+  };
+
   nixpkgs.config.allowUnfree = true;
 
   # Home Manager needs a bit of information about you and the paths it should
@@ -37,12 +45,10 @@
     rofi-wayland
     teams-for-linux
     brightnessctl
-    wl-clipboard
-    waybar       
+    wl-clipboard 
     kitty
     chromium
     google-chrome
-    waybar
     firefox
     neovide
     acpi
@@ -58,6 +64,7 @@
     gnumake
     delta
     fira-code-nerdfont
+    spotify
     ranger
     ripgrep
     slack
@@ -75,21 +82,13 @@
     mkcert
     cassandra
     figma-linux
-    # # It is sometimes useful to fine-tune packages, for example, by applying
-    # # overrides. You can do that directly here, just don't forget the
-    # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
-    # # fonts?
-    # (pkgs.nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
-
-    # # You can also create simple shell scripts directly inside your
-    # # configuration. For example, this adds a command 'my-hello' to your
-    # # environment:
-    # (pkgs.writeShellScriptBin "my-hello" ''
-    #   echo "Hello, ${config.home.username}!"
-    # '')
-
     unstablePkgs.vscode
     unstablePkgs.neovim
+    playerctl
+    pamixer
+    bluez
+    bluez-tools
+    nodejs_22
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -107,6 +106,7 @@
     ".config/rofi" = { source = ./configs/rofi; recursive = true; };
     ".config/nvim" = { source = ./configs/nvim; recursive = true; };
     ".config/xplr" = { source = ./configs/xplr; recursive = true; };
+
     ## ".ssh/" = { source = ./configs/ssh; recursive = true; };
     ".gitconfig" = { source = ./configs/git/.gitconfig; };
     ".gitignore" = { source = ./configs/git/.gitignore; };
