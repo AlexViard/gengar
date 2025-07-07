@@ -1,24 +1,11 @@
-{ config, pkgs, unstablePkgs, ... }:
+{ config, pkgs, ... }:
 
 {
   imports = [
     ./modules/zsh.nix
-    ./modules/hyprland.nix
-    # @TODO handle this properly
-    # ./modules/kanata.nix
-    ./modules/i18n.nix
     ./modules/update.nix
-    ./modules/openvide.nix
-    ./modules/rofi.nix
+    ./modules/cosmic-workspace.nix
   ];
-
-  dconf.enable = true;
-
-  dconf.settings = {
-    "org/gnome/desktop/interface" = {
-      color-scheme = "prefer-dark";
-    };
-  };
 
   nixpkgs.config.allowUnfree = true;
 
@@ -35,60 +22,38 @@
   # You should not change this value, even if you update Home Manager. If you do
   # want to update the value, then make sure to first check the Home Manager
   # release notes.
-  home.stateVersion = "24.05"; # Please read the comment before changing.
+  home.stateVersion = "25.05"; # Please read the comment before changing.
 
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = with pkgs; [
     git
-    mako         
-    rofi-wayland
     teams-for-linux
-    brightnessctl
     wl-clipboard 
     kitty
     chromium
     google-chrome
-    firefox
-    neovide
     acpi
-    (lazygit.overrideAttrs (oldAttrs: {
-      version = "0.48.0";
-      src = fetchFromGitHub {
-        owner = "jesseduffield";
-        repo = "lazygit";
-        rev = "v0.48.0";
-        sha256 = "sha256-L3OcCkoSJZ6skzcjP2E3BrQ39cXyxcuHGthj8RHIGeQ=";
-      };
-    }))
     gnumake
     delta
-    fira-code-nerdfont
+    nerd-fonts.fira-code
     spotify
-    ranger
     ripgrep
     slack
     bat
     btop
     discord
-    dolphin
     neofetch
     unzip
-    xplr
     grim
     slurp
-    oxker
     docker
     mkcert
-    cassandra
     figma-linux
-    unstablePkgs.vscode
-    unstablePkgs.neovim
+    vscode
     playerctl
-    pamixer
-    bluez
-    bluez-tools
     nodejs_22
+    ydotool  # Pour l'automatisation des interactions clavier/souris sous Wayland
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -101,17 +66,18 @@
     ".config/bat" = { source = ./configs/bat; recursive = true; };
     ".config/btop" = { source = ./configs/btop; recursive = true; };
     ".config/kitty" = { source = ./configs/kitty; recursive = true; };
-    ".config/lazygit" = { source = ./configs/lazygit; recursive = true; };
-    ".config/mako" = { source = ./configs/mako; recursive = true; };
-    ".config/rofi" = { source = ./configs/rofi; recursive = true; };
-    ".config/nvim" = { source = ./configs/nvim; recursive = true; };
-    ".config/xplr" = { source = ./configs/xplr; recursive = true; };
+    ".local/bin/init-cosmic-workspaces" = { 
+      source = ./scripts/init-cosmic-workspaces.sh; 
+      executable = true; 
+    };
+    ".local/bin/cosmic-workspace-init" = { 
+      source = ./scripts/cosmic-workspace-init.sh; 
+      executable = true; 
+    };
 
     ## ".ssh/" = { source = ./configs/ssh; recursive = true; };
     ".gitconfig" = { source = ./configs/git/.gitconfig; };
     ".gitignore" = { source = ./configs/git/.gitignore; };
-
-    ".local/share/icons/Bibata" = { source = ./configs/cursor; recursive = true; };
 
     # # You can also set the file content immediately.
     # ".gradle/gradle.properties".text = ''

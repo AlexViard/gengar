@@ -11,7 +11,6 @@ let
     fi
     echo "Mise à jour de Home Manager..."
     home-manager switch
-    hyprctl reload
   '';
 in
 {
