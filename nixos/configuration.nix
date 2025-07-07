@@ -16,7 +16,7 @@
   
   nix.settings.experimental-features = ["nix-command" "flakes"];
 
-  system.stateVersion = "24.05";
+  system.stateVersion = "25.05";
 
   # Configurations basiques du système
   boot.loader.systemd-boot.enable = true;
@@ -35,13 +35,19 @@
 
   console.keyMap = "us";
 
-  sound.enable = true;
-  hardware.pulseaudio.enable = true;
+  hardware.pulseaudio.enable = false;
   hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = true;
   services.blueman.enable = true;
-  programs.hyprland.enable = true;
-  programs.hyprlock.enable = true;
+  
+  services.xserver.enable = true;
+  services.xserver.displayManager.gdm.enable = true;
+  services.displayManager.cosmic-greeter.enable = true;
+  # Enable the COSMIC DE itself
+  services.desktopManager.cosmic.enable = true;
+  # Enable XWayland support in COSMIC
+  services.desktopManager.cosmic.xwayland.enable = true;
+  services.displayManager.defaultSession = "cosmic";
 
   time.timeZone = "Europe/Paris";
 
@@ -54,29 +60,15 @@
 
   virtualisation.docker.enable = true;
 
-# @TODO handle this properly
   programs.zsh.enable = true;
 
   services.dbus.enable = true;
   services.udev.packages = [ pkgs.libinput ];  
 
-# @TODO handle this properly
-
   services.openvpn.servers = {
     dev = { 
       config = "config /root/openvpn/aviard.ovpn"; 
       updateResolvConf = true;
-    };
-  };
-
-  services.greetd = {
-    enable = true;
-    settings = rec {
-      initial_session = {
-        command = "${pkgs.hyprland}/bin/hyprland";
-        user = "alex";
-      };
-      default_session = initial_session;
     };
   };
 
